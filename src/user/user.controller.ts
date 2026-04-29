@@ -9,6 +9,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CreateUserDTO } from './DTOs/create-user-dto';
+import { UpdateUserDTO } from './DTOs/update-user-dto';
 
 @Controller('users')
 export class UserController {
@@ -25,7 +26,7 @@ export class UserController {
     return { id };
   }
   @Put(':id')
-  async update(@Body() body, @Param() params) {
+  async update(@Body() body: UpdateUserDTO, @Param() params) {
     return {
       method: 'put',
       body,
