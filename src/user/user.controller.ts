@@ -7,7 +7,7 @@ import {
   Patch,
   Put,
   Delete,
-  ParseIntPipe
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateUserDTO } from './DTOs/create-user-dto';
 import { UpdateUserDTO } from './DTOs/update-user-dto';
@@ -16,11 +16,11 @@ import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService) {}
 
   @Post()
   async create(@Body() body: CreateUserDTO) {
-    return this.userService.create(body);
+    return await this.userService.create(body);
   }
   @Get()
   async read() {
@@ -31,7 +31,10 @@ export class UserController {
     return { id };
   }
   @Put(':id')
-  async update(@Body() body: UpdateUserDTO, @Param('id', ParseIntPipe) id: number) {
+  async update(
+    @Body() body: UpdateUserDTO,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     return {
       method: 'put',
       body,
@@ -39,8 +42,10 @@ export class UserController {
     };
   }
   @Patch(':id')
-  async updatePartial(@Body() body: UpdatePatchUserDTO, 
-  @Param('id', ParseIntPipe) id: number) {
+  async updatePartial(
+    @Body() body: UpdatePatchUserDTO,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     return {
       method: 'patch',
       body,
