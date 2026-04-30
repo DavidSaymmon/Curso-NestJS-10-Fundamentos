@@ -13,4 +13,7 @@ export class UserService {
       },
     });
   }
+  async read() {
+    return await this.prismaService.users.findMany({});
+  }
 }

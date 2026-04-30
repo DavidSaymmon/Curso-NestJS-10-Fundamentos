@@ -24,7 +24,7 @@ export class UserController {
   }
   @Get()
   async read() {
-    return { name: 'joao' };
+    return this.userService.read();
   }
   @Get(':id')
   async readOne(@Param('id', ParseIntPipe) id: number) {
