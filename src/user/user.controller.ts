@@ -28,7 +28,7 @@ export class UserController {
   }
   @Get(':id')
   async readOne(@Param('id', ParseIntPipe) id: number) {
-    return { id };
+    return this.userService.readOne(id);
   }
   @Put(':id')
   async update(
